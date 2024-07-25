@@ -64,13 +64,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateHistoryTable() {
         const cells = historyTable.getElementsByTagName('td');
-        for (let i = 0; i < cols * rows; i++) {
-            if (i < history.length) {
-                cells[i].textContent = history[i];
-            } else {
-                cells[i].textContent = '';
-            }
+        for (let i = cells.length - 1; i > 0; i--) {
+            cells[i].textContent = cells[i - 1].textContent;
         }
+        cells[0].textContent = history[history.length - 1];
     }
     
     function updateRouletteTable() {
