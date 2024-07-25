@@ -31,29 +31,11 @@
 .status-bar, .status-bar-200 {
     width: 50%; /* Adjust the width to ensure it fits within the container */
     height: 10px; /* Adjust height as needed */
-    background-color: grey; /* Default color */
+    background-color: rgb(202, 202, 202);
     margin-bottom: 5px; /* Space between the status bar and the count */
 }
 
-/*  If a number has not been drawn in the last 37 draws. */
-.status-bar.blue {
-    background-color: rgb(229, 229, 229);
-}
 
-/* For the top 3 most drawn numbers in the last 37 draws */
-.status-bar.red {
-    background-color: rgb(232, 136, 136);
-}
-
-/* For all other numbers */
-.status-bar.grey {
-    background-color: rgb(229, 229, 229);
-}
-
-/* If a number has been drawn more than 6 times in the last 200 draws */
-.status-bar-200.green {
-    background-color: rgb(248, 225, 155);
-}
 
 /* For the top 10 most drawn numbers in the last 200 draws */
 .status-bar-200.pink {
@@ -61,7 +43,7 @@
 }
 
 /* For all other numbers */
-.status-bar-200.grey-200 {
+.status-bar.grey,.status-bar-200.grey-200 {
     background-color: rgb(202, 202, 202);
 }
 
@@ -89,10 +71,11 @@
     background-color: #f0f0f0;
 }
 
-.status-bar.green {
-    background-color: rgb(198, 237, 200);
+.status-bar.green, .status-bar-200.green {
+    background-color:rgb(68, 254, 75);
 }
 
-.status-bar-200.red {
+.status-bar.red, .status-bar-200.red {
     background-color: red;
+    /* Add any other shared styles here */
 }

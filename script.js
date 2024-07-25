@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
         for(let i = 0; i < 200; i ++){
             addNumber(Math.floor(Math.random() * (36 - 0 + 1)) + 0)
         }
+
         updateHistoryTable();
         updateRouletteTable();
     }
@@ -80,56 +81,44 @@ document.addEventListener('DOMContentLoaded', function () {
     
     function updateRouletteTable() {
         const rouletteNumbers = rouletteTable.getElementsByClassName('roulette-number');
+        const last37 = history.slice(-37);
+        const last200 = history.slice(-200);
         for (let i = 0; i < 37; i++) {
             const statusBar = rouletteNumbers[i].getElementsByClassName('status-bar')[0];
             const frequencyCount = rouletteNumbers[i].getElementsByClassName('frequency-count')[0];
             const statusBar200 = rouletteNumbers[i].getElementsByClassName('status-bar-200')[0];
             const frequencyCount200 = rouletteNumbers[i].getElementsByClassName('frequency-count-200')[0];
             
-            const last37 = history.slice(-37);
-            const last200 = history.slice(-200);
-            
             const count37 = last37.filter(num => num == i).length;
             const count200 = last200.filter(num => num == i).length;
-            
             frequencyCount.textContent = count37;
             frequencyCount200.textContent = count200;
             
-            statusBar.className = 'status-bar green';
+            statusBar.className = 'status-bar grey';
             statusBar200.className = 'status-bar-200 grey-200';
             
-            if (count37 === 0 && last37.length >= 37) {
-                statusBar.className = 'status-bar grey';
+            if(count37 > 0 && last37.length >= 37){
+                statusBar.className = 'status-bar green';
             }
-            
-            if (count200 >= 8 && last200.length === 200) {
+            if(count200 >= 5 && count200 <= 8){
                 statusBar200.className = 'status-bar-200 green';
-            } else if (last200.length === 200) {
-                statusBar200.className = 'status-bar-200 grey-200';
+            }
+            else if (count200 >= 9) {
+                statusBar200.className = 'status-bar-200 red';
             }
         }
         
         // Highlight the most drawn numbers
-        if (history.length >= 37) {
-            const counts = []; 
-            for (let i = 0; i < 37; i++) {
-                counts.push({ number: i, count: frequency[i] });
-            }
-            counts.sort((a, b) => b.count - a.count);
-            for (let i = 0; i < 5; i++) {
-                rouletteNumbers[counts[i].number].getElementsByClassName('status-bar')[0].className = 'status-bar red';
-            }
-        }
-        
-        if (history.length >= 200) {
-            const counts200 = [];
-            for (let i = 0; i < 37; i++) {
-                counts200.push({ number: i, count: frequency200[i] });
-            }
-            counts200.sort((a, b) => b.count - a.count);
-            for (let i = 0; i < 10; i++) {
-                rouletteNumbers[counts200[i].number].getElementsByClassName('status-bar-200')[0].className = 'status-bar-200 pink';
-            }
+
+            const counts = [];
+            if(history.length >= 5){
+                for (let i = 0; i < 37; i++) {
+                    counts.push({ number: i, count: frequency[i] });
+                }
+                counts.sort((a, b) => b.count - a.count);
+                for (let i = 0; i < 5; i++) {
+                    rouletteNumbers[counts[i].number].getElementsByClassName('status-bar')[0].className = 'status-bar red';
+            } 
         }
     }
 
@@ -144,8 +133,11 @@ document.addEventListener('DOMContentLoaded', function () {
             if (history.length > 37) {
                 frequency[history[history.length - 38]]--;
             }
-            updateHistoryTable();
-            updateRouletteTable();
+            if(!number){
+                // finish seed data only update sekali
+                updateHistoryTable();
+                updateRouletteTable();
+            }
         }
         pastNumberInput.value = '';
     }
@@ -157,5 +149,5 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     
-    seedDummyData();
+    // seedDummyData();
 });
