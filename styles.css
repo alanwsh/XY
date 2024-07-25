@@ -44,7 +44,7 @@
 
 /* For all other numbers */
 .status-bar.grey,.status-bar-200.grey-200 {
-    background-color: rgb(202, 202, 202);
+    background-color: black;
 }
 
 /* Frequency count */
@@ -73,6 +73,7 @@
 
 .status-bar.green, .status-bar-200.green {
     background-color:rgb(68, 254, 75);
+    /* color: rgb(212, 216, 90) */
 }
 
 .status-bar.red, .status-bar-200.red {
