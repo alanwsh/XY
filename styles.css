@@ -80,3 +80,53 @@
     background-color: red;
     /* Add any other shared styles here */
 }
+
+@media (max-width: 600px) {
+    html {
+        margin-top: 30px;
+    }
+    #roulette-table {
+        display: grid;
+        grid-template-columns: repeat(5, 18%); /* Adjust the number of columns as needed */
+        gap: 11px;
+        margin-top: 20px;
+    } 
+
+    input, button {
+        height: 50px;
+    }
+
+    .input-container {
+        display: flex;
+        justify-content: center;
+        position: sticky;
+        top: 50px;
+        padding: 20px 0;
+        background-color: white;
+    }
+
+    button {
+        margin-left: 10px;
+        align-items: center;
+        margin-top: 5px;
+    }
+
+    #to-bottom{
+        background-image: url('https://cdn.gamerbraves.com/2022/01/kirby-1.jpg');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 85px;
+    }
+    .roulette-number {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #ffffff;
+        width: 60px; /* Increased width to accommodate the frequency count */
+        height: 50px; /* Adjusted height */
+    }
+    html {
+        scroll-behavior: smooth;
+    }
+}

@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const maximumNumber = 36;
-    const row = 20;
-    const col = 20;
+    const row = 40;
+    const col = 10;
 
     const his_table = new HistoryTable(historyTable, maximumNumber, col, row);
     his_table.init();
