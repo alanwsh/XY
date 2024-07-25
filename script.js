@@ -3,13 +3,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const addNumberButton = document.getElementById('add-number');
     const pastNumberInput = document.getElementById('past-number');
     const rouletteTable = document.getElementById('roulette-table');
-    
+
+    function seedDummyData(){
+        for(let i = 0; i < 200; i ++){
+            addNumber(Math.floor(Math.random() * (36 - 0 + 1)) + 0)
+        }
+        updateHistoryTable();
+        updateRouletteTable();
+    }
+
     let history = [];
     let frequency = new Array(37).fill(0);
     let frequency200 = new Array(37).fill(0);
     let cols = 20;
     let rows = 20;
-    
+
     // Initialize the table with 500 slots
     const row = document.createElement('tr');
     for (let i = 0; i < cols; i++) {
@@ -87,16 +95,14 @@ document.addEventListener('DOMContentLoaded', function () {
             frequencyCount.textContent = count37;
             frequencyCount200.textContent = count200;
             
-            statusBar.className = 'status-bar grey';
+            statusBar.className = 'status-bar green';
             statusBar200.className = 'status-bar-200 grey-200';
             
-            if (count37 === 0 && last37.length === 37) {
-                statusBar.className = 'status-bar blue';
-            } else if (last37.length === 37) {
+            if (count37 === 0 && last37.length >= 37) {
                 statusBar.className = 'status-bar grey';
             }
             
-            if (count200 > 6 && last200.length === 200) {
+            if (count200 >= 8 && last200.length === 200) {
                 statusBar200.className = 'status-bar-200 green';
             } else if (last200.length === 200) {
                 statusBar200.className = 'status-bar-200 grey-200';
@@ -105,12 +111,12 @@ document.addEventListener('DOMContentLoaded', function () {
         
         // Highlight the most drawn numbers
         if (history.length >= 37) {
-            const counts = [];
+            const counts = []; 
             for (let i = 0; i < 37; i++) {
                 counts.push({ number: i, count: frequency[i] });
             }
             counts.sort((a, b) => b.count - a.count);
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 5; i++) {
                 rouletteNumbers[counts[i].number].getElementsByClassName('status-bar')[0].className = 'status-bar red';
             }
         }
@@ -127,16 +133,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function addNumber() {
-        const num = parseInt(pastNumberInput.value);
+    function addNumber(number = null) {
+        const num = parseInt(number || pastNumberInput.value);
         if (!isNaN(num) && num >= 0 && num <= 36) {
             history.push(num);
             frequency[num]++;
             if (history.length > 200) {
-                frequency[history[history.length - 201]]--;
+                frequency200[history[history.length - 201]]--;
             }
             if (history.length > 37) {
-                frequency200[history[history.length - 38]]--;
+                frequency[history[history.length - 38]]--;
             }
             updateHistoryTable();
             updateRouletteTable();
@@ -150,4 +156,6 @@ document.addEventListener('DOMContentLoaded', function () {
             addNumber();
         }
     });
+    
+    seedDummyData();
 });

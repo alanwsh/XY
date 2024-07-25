@@ -47,7 +47,7 @@
 
 /* For all other numbers */
 .status-bar.grey {
-    background-color: rgb(198, 237, 200);
+    background-color: rgb(229, 229, 229);
 }
 
 /* If a number has been drawn more than 6 times in the last 200 draws */
@@ -87,4 +87,12 @@
 
 #history-table th {
     background-color: #f0f0f0;
+}
+
+.status-bar.green {
+    background-color: rgb(198, 237, 200);
+}
+
+.status-bar-200.red {
+    background-color: red;
 }
