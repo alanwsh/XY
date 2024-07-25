@@ -82,8 +82,8 @@
 }
 
 @media (max-width: 600px) {
-    html {
-        margin-top: 30px;
+    #top {
+        padding-top: 30px;
     }
     #roulette-table {
         display: grid;
@@ -111,13 +111,7 @@
         margin-top: 5px;
     }
 
-    #to-bottom{
-        background-image: url('https://cdn.gamerbraves.com/2022/01/kirby-1.jpg');
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        width: 85px;
-    }
+
     .roulette-number {
         padding: 5px;
         border: 1px solid #ccc;
@@ -129,4 +123,21 @@
     html {
         scroll-behavior: smooth;
     }
+}
+
+#to-bottom{
+    background-image: url('https://cdn.gamerbraves.com/2022/01/kirby-1.jpg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 85px;
+    min-height: 25px;
+}
+#to-top{
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFf0wH8iVDQwhd-1oa53gSWLCJ09A2xYpvNg&s');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 50px;
+    min-height: 25px;
 }
