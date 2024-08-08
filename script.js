@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const addNumberButton = document.getElementById('add-number');
     const pastNumberInput = document.getElementById('past-number');
     const rouletteTable = document.getElementById('roulette-table');
+    const rouletteTable2 = document.getElementById('roulette-v2');
 
     function seedDummyData(){
         for(let i = 0; i < 200; i ++){
@@ -23,12 +24,15 @@ document.addEventListener('DOMContentLoaded', function () {
     his_table.init();
 
     const rou_table = new RouletteTable(rouletteTable, 36);
-    rou_table.init();
+    // rou_table.init();
+
+    const rou_table_2 = new RouletteTable2(rouletteTable2, 36);
+    rou_table_2.init();
 
     async function addNumber(){
         his_table.addNumber(pastNumberInput.value);
-        await rou_table.updateRouletteTable(his_table);
-        rou_table.updateBoxes();
+        await rou_table_2.updateRouletteTable(his_table);
+        rou_table_2.updateBoxes();
         pastNumberInput.value = '';
     }
     addNumberButton.addEventListener('click', function (event) {
